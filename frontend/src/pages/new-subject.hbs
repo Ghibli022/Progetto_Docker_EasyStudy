@@ -1,0 +1,22 @@
+<div class="form-upload">
+    <p id="go-back">
+        <i class="fa-solid fa-arrow-left-long"></i>Torna indietro
+    </p>
+    <h2>Nuova materia</h2>
+    <form id="form-upload" method="POST" action="/table-grades/new-subject">
+        <div class="field">
+            <label for="subject-name">Nome della materia</label>
+            <input type="text" name="subject_name" id="subject-name" required placeholder="Inserisci il nome della materia">
+            
+            <label for="subject-period">Seleziona il periodo:</label>
+            <select id="subject-period" name="subject_period_id">
+                <option value="1">Primo Semestre</option>
+                <option value="2">Secondo Semestre</option>
+                <option value="3">Tutto l'anno</option>
+            </select>
+        </div>
+        <button type="submit" class="load-material">
+            <i class="fa-solid fa-circle-plus"></i> Aggiungi materia
+        </button>
+    </form>
+</div>

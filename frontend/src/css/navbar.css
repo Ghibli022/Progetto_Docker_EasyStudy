@@ -1,0 +1,183 @@
+/*Code from Uiverse.io - https://uiverse.io/Cevorob/good-wolverine-51*/
+.navbar-button {
+    position: fixed;
+    top: 25px;
+    left: 15px;
+    z-index: 10;
+    width: 40px;
+    height: 30px;
+    background: transparent;
+    cursor: pointer;
+    display: block;
+}
+
+.navbar-button input {
+    display: none;
+}
+
+.navbar-button span {
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background: rgb(2, 2, 100);
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: 0.25s ease-in-out;
+}
+
+.navbar-button span:nth-of-type(1) {
+    top: 0;
+    transform-origin: left center;
+}
+
+.navbar-button span:nth-of-type(2) {
+    top: 50%;
+    transform: translateY(-50%);
+    transform-origin: left center;
+}
+
+.navbar-button span:nth-of-type(3) {
+    top: 100%;
+    transform-origin: left center;
+    transform: translateY(-100%);
+}
+
+.navbar-button input:checked ~ span:nth-of-type(1) {
+    transform: rotate(45deg);
+    top: 0;
+    left: 5px;
+    background: white;
+}
+
+.navbar-button input:checked ~ span:nth-of-type(2) {
+    width: 0;
+    opacity: 0;
+    background: white;
+}
+
+.navbar-button input:checked ~ span:nth-of-type(3) {
+    transform: rotate(-45deg);
+    top: 28px;
+    left: 5px;
+    background: white;
+}
+/*------------------------------------*/
+
+.vertical-navbar {
+    background-color: rgb(2, 2, 100);
+    color: white;
+    min-height: 100vh;
+    width: 250px;
+    padding: 1px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.7s ease,padding 0.7s ease;
+}
+
+.vertical-navbar .title {
+    visibility: visible;
+    text-align: right;
+    padding-right: 40px;
+    padding-left: 60px;
+    white-space: nowrap;
+}
+
+body:has(#close-navbar:not(:checked)) .vertical-navbar {
+    width: 0;
+    padding: 0;
+}
+
+body:has(#close-navbar:not(:checked)) .title {
+    visibility: hidden;
+}
+
+
+/*Manage navbar list*/
+
+.list-actions{
+    list-style-type: none;
+    font-size: 20px;
+    margin-top: 40px;
+    padding: 5px;
+    margin-bottom: 0;
+}
+
+.list-actions li{
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    transition: all 0.3s ease-out;
+}
+
+.list-actions li:hover{
+    background-color: rgb(16, 72, 146);
+    cursor: pointer;
+}
+
+.list-actions li:last-child {
+    margin-bottom: 0;
+}
+
+/*Manage navbar profile */
+
+.profile-info {
+    margin-top: auto;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease-out;
+}
+
+.profile-info:hover{
+    background-color: rgb(16, 72, 146);
+    cursor: pointer;
+}
+
+#profile-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.profile-desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+}
+
+#user-email {
+    font-size: 14px;
+    font-weight: 600;
+    overflow: hidden;
+}
+
+#user-role {
+    font-size: 13px;
+    color: #777777;
+    margin-top: 3px;
+}
+
+footer {
+    background-color: #e2e2e2;
+    border-top: 2px solid rgb(172, 171, 171);
+    margin-top: auto;
+    text-align: center;
+    padding: 10px;
+    color: rgb(80, 80, 80);
+}
+
+footer p {
+    margin: 5px 0;
+}

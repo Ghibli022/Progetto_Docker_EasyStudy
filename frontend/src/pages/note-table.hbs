@@ -1,0 +1,108 @@
+<style>
+    .grades-page {
+        position: relative;
+        min-height: 75vh;
+    }
+
+    .dev-placeholder-container {
+        position: absolute;
+        inset: 0;
+        background-color: rgba(248, 250, 252, 0.85);
+        backdrop-filter: blur(5px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+        border-radius: 12px;
+    }
+
+    .dev-placeholder-text {
+        font-size: clamp(2rem, 5vw, 4rem);
+        font-weight: 800;
+        color: #0f172a;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        padding: 30px 50px;
+        border: 5px dashed #2563eb;
+        border-radius: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+</style>
+
+<div class="grades-page">
+
+    <div class="dev-placeholder-container">
+        <div class="dev-placeholder-text">In via di sviluppo</div>
+    </div>
+
+    <h1 class="page-title">Tabella note</h1>
+
+    <div class="grades-layout">
+        <div class="grades-card main-card">
+            <div class="grades-table-header">
+                <span>Materia</span>
+                <span>Media</span>
+                <span>Valutazioni</span>
+            </div>
+
+            <div class="subjects-list">
+                {{#each subjects}}
+                    <div class="subject-row" data-subject-id="{{id}}">
+                        <div class="subject-name-cell">
+                            <span class="subject-bar"></span>
+                            <span class="subject-name">{{name}}</span>
+                        </div>
+                        <span class="subject-avg">{{avg}}</span>
+                        <span class="subject-grades-inline">{{formattedGrades}}</span>
+                    </div>
+                {{/each}}
+            </div>
+            <div class="card-footer-btn">
+                <button type="button" onclick="window.location.href='/table-grades/new-subject'" class="btn-primary-blue">
+                    <i class="fa-solid fa-plus"></i> Nuova materia
+                </button>
+            </div>
+        </div>
+
+        <div class="grades-card details-card">
+            <h2 class="details-title">Dettagli materia</h2>
+            
+            <div class="details-header-info">
+                <h3>Matematica</h3>
+                <p class="detail-average">Media: <span>N/D</span></p>
+            </div>
+
+            <button type="button" class="btn-primary-blue full-width-btn" style="display: none;" onclick="window.location.href='/table-grades/new-grade'">
+                <i class="fa-solid fa-plus"></i> Nuova valutazione
+            </button>
+
+            <div class="details-grades-section">
+                <h4>Valutazioni</h4>
+                <ul class="grades-history-list">
+                    <li class="grade-history-item">
+                        <span class="grade-value">4</span>
+                        <span class="grade-date">12.09.2026</span>
+                    </li>
+                    <li class="grade-history-item">
+                        <span class="grade-value">6</span>
+                        <span class="grade-date">20.10.2026</span>
+                    </li>
+                    <li class="grade-history-item">
+                        <span class="grade-value">5</span>
+                        <span class="grade-date">02.12.2026</span>
+                    </li>
+                    <li class="grade-history-item">
+                        <span class="grade-value">6</span>
+                        <span class="grade-date">30.01.2027</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+        window.subjectsData = "{{subjects}}";
+</script>

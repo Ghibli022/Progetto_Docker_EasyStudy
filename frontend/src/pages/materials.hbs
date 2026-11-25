@@ -1,0 +1,177 @@
+<div class="container">
+    <div class="search-container">
+        <input class="input" type="text" id="search-input">
+        <svg viewBox="0 0 24 24" class="search__icon">
+            <g>
+                <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                </path>
+            </g>
+        </svg>
+    </div>
+</div>
+<button class="load-material" onclick="window.location.href='/materials/upload'">
+    <i class="fa-solid fa-circle-plus"></i> Carica materiale
+</button>
+<button class="load-material" id="filter-btn" type="button">
+    <i class="fa-solid fa-filter"></i> Filtro ricerca <span id="filter-count"></span>
+</button>
+
+{{#if searched}}
+<div class="list-cards" id="materials-list">
+    {{#if materials.length}}
+    {{#each materials}}
+    <div class="card">
+        <div class="card-icon">
+            <i class="fa-solid fa-file-lines"></i>
+        </div>
+        <div class="card-body">
+            <h3 class="card-filename">{{filename}}</h3>
+            <p class="card-description">{{description}}</p>
+        </div>
+        <div class="card-tags">
+            {{#each tags_3}}
+            <span class="tag">{{name}}</span>
+            {{/each}}
+
+            {{#if hasMoreTags}}
+            <span class="tag-others">+ Altri...</span>
+            {{/if}}
+        </div>
+        <div class="card-footer">
+            <div class="card-uploader">
+                <i class="fa-regular fa-user"></i><span>{{author.email}}</span>
+            </div>
+            <div class="card-date">
+                <i class="fa-regular fa-calendar"></i><span>{{created_at}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup-wrapper">
+        <div class="popup">
+
+            <button type="button" class="popup-close"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="popup-header">
+                <div class="popup-file-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+
+                <h2>{{filename}}</h2>
+                <span class="popup-subtitle">Dettagli del materiale</span>
+            </div>
+
+            <div class="popup-content">
+                <div class="popup-info">
+                    <div class="popup-description-section">
+                        <div class="popup-description-title">
+                            <i class="fa-solid fa-message"></i>
+                            <span class="info-label">Descrizione materiale</span>
+                        </div>
+
+                        <div class="popup-description">
+                            <p>{{#if description}}{{description}}{{else}}Nessuna descrizione disponibile.{{/if}}</p>
+                        </div>
+                    </div>
+
+                    <div class="popup-info-row popup-tags-row">
+                        <i class="fa-solid fa-tags"></i>
+
+                        <div class="popup-tags-content">
+                            <span class="info-label">Tag associati</span>
+
+                            {{#if tags.length}}
+                            <div class="popup-tags">
+                                {{#each tags}}
+                                <span class="tag">{{name}}</span>
+                                {{/each}}
+                            </div>
+                            {{else}}
+                            <span class="info-value">Nessun tag associato</span>
+                            {{/if}}
+                        </div>
+                    </div>
+
+
+                    <div class="popup-info-row">
+                        <i class="fa-regular fa-user"></i>
+                        <div>
+                            <span class="info-label">Caricato da</span>
+                            <span class="info-value">{{author.email}}</span>
+                        </div>
+                    </div>
+
+                    <div class="popup-info-row">
+                        <i class="fa-solid fa-weight-hanging"></i>
+                        <div>
+                            <span class="info-label">Dimensione</span>
+                            <span class="info-value">{{file_size}} KB</span>
+                        </div>
+                    </div>
+
+                    <div class="popup-info-row">
+                        <i class="fa-solid fa-download"></i>
+                        <div>
+                            <span class="info-label">Download</span>
+                            <span class="info-value">{{download_count}}</span>
+                        </div>
+                    </div>
+
+                    <div class="popup-info-row">
+                        <i class="fa-regular fa-calendar"></i>
+                        <div>
+                            <span class="info-label">Data di caricamento</span>
+                            <span class="info-value">{{created_at}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="popup-actions">
+                    <a class="download" href="/materials/download/{{id}}"><i class="fa-solid fa-download"></i>Scarica
+                        materiale</a>
+                    <a id="report" class="report" href="/materials/report/{{id}}"><i
+                            class="fa-solid fa-flag"></i>Segnala materiale</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    {{else}}
+    <div class="no-results">
+        <i class="fa-solid fa-book icon-no-results"></i>
+        <p id="description">Nessun risultato</p>
+    </div>
+    {{/if}}
+</div>
+{{/if}}
+
+<div class="popup-wrapper" id="filter-popup">
+    <div class="popup">
+        <button type="button" class="popup-close"><i class="fa-solid fa-xmark"></i></button>
+
+        <div class="popup-header">
+            <div class="popup-file-icon"><i class="fa-solid fa-filter"></i></div>
+            <h2>Filtra per tag</h2>
+            <span class="popup-subtitle">Mostra solo i materiali con tutti i tag scelti</span>
+        </div>
+
+        <div class="popup-content">
+            <div class="popup-info">
+                <div class="filter-chips">
+                    {{#each allTags}}
+                    <label class="filter-chip">
+                        <input type="checkbox" value="{{id}}">
+                        <span>{{name}}</span>
+                    </label>
+                    {{/each}}
+                </div>
+            </div>
+
+            <div class="popup-actions">
+                <a class="download" id="filter-apply" href="#"><i class="fa-solid fa-check"></i>Applica filtri</a>
+                <a class="report" id="filter-reset" href="#"><i class="fa-solid fa-rotate-left"></i>Azzera filtri</a>
+            </div>
+        </div>
+    </div>
+</div>

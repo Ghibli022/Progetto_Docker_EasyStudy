@@ -1,0 +1,86 @@
+const { Op, Sequelize } = require('sequelize');
+const Grade = require('../models/gradeModel');
+const Subject = require('../models/subjectModel');
+const validator = require('../utils/validator');
+
+const newSubject = async(req,res)=>{
+    try{
+        const userId = req.session.userId;
+        const subName = validator.sanitizeInput(req.body.subject_name); 
+        const subPeriod = req.body.subject_period_id;
+
+        await Subject.create({
+            user_id: userId,
+            name: subName,
+            semester: subPeriod
+        });
+
+        res.redirect('/table-grades');
+
+    }catch(err){
+        console.error("Errore inserimento nuova materia:", err);
+        return res.status(500).json({
+            success: false,
+            message: "Errore interno del server"
+        });
+    }
+}
+
+const showHomePage = async(req,res)=>{
+    try{
+        const userId = req.session.userId;
+        const subjects = await Subject.findAll({
+            where: {user_id: userId},
+            include: [{
+                model: Grade,
+                as: 'grades'
+            }],
+            order: [['created_at', 'DESC']]
+        });
+
+        //Converting the instances into plain object (Plain Old Javascript Objects)
+        const plainSubjects = subjects.map(subject =>{
+            const plainSubject = subject.get({plain:true});
+            const grades = plainSubject.grades || [];
+            let formattedGrades="";
+
+            grades.forEach(grade => {
+                formattedGrades+=`${grade.grade};`
+            });
+            console.log(formattedGrades);
+
+            let avg=0;
+            if(grades.length>0){
+                const sum = grades.reduce((acc, g)=>acc+parseFloat(g.grade),0); //calcualte the sum using accumulator and grade (acc,g)
+                avg=(sum/grades.length).toFixed(2);
+            }
+
+
+
+            return{
+                ...plainSubject, //Using spread operator to copy the properties of the object 
+                avg: grades.length>0 ? avg :'N/D',
+                formattedGrades
+            };
+        });
+
+        res.render('note-table', {
+            layout: "main",
+            title: "Note Scolastiche",
+            styles: ["home.css", "navbar.css", "searchbar.css", "grades.css"],
+            subjects: plainSubjects,
+            avg: plainSubjects
+        });
+    }catch (err) {
+        console.error("Errore renderizzazione home page note:", err);
+        return res.status(500).json({
+            success: false,
+            message: "Errore interno del server"
+        });
+    }
+}
+
+module.exports = {
+    showHomePage,
+    newSubject
+}

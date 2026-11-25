@@ -1,0 +1,23 @@
+<div class="login-page">
+    <div class="container-title">
+        <img src="public/icon-site.png" alt="icon.png" style="max-width: 100px;">
+        <h1 class="title">EasyStudy</h1>
+        <p class="sub-title">La tua piattaforma per lo studio</p>
+    </div>
+
+    <div class="container">
+        <div class="heading">Accedi</div>
+        <form action="/login" class="form" method="POST">
+            <label for="email">E-mail</label>
+            <input required class="input" type="email" name="email" id="email" value="{{email}}"><br><br>
+            <label for="password">Password</label>
+            <input required class="input" type="password" name="password" id="password">
+            <input class="login-button" type="submit" value="Accedi">
+        </form>
+        <span class="agreement">Non hai un account? <a href="/signup">Registrati</a></span>
+        <span class="agreement"><a href="#">Password dimenticata?</a></span>
+        {{#if error}}
+        <p class="error">{{error}}</p>
+        {{/if}}
+    </div>
+</div>

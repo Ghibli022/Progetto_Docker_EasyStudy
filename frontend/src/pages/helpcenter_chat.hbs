@@ -1,0 +1,109 @@
+<section class="study-chat" aria-label="Chat">
+    <header class="study-chat__header">
+        <div>
+            <h1 class="study-chat__title">{{request.title}}</h1>
+            <p class="study-chat__subtitle">Domanda di {{request.author_name}}</p>
+        </div>
+        {{#unless request.is_status_resolved}}
+            {{#if request.is_req_owner}}
+                <button class="study-chat__resolved" type="button" id="openResolvedPopup">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 12l5 5L19 7" />
+                    </svg>
+                    Risolta
+                </button>
+                <div class="popup-wrapper" id="resolvedPopup">
+                    <div class="popup">
+                        <h2>Sei sicuro? La chat corrente verrà bloccata e contrassegnata come risolta, sarà comunque possibile accedervi ma non scrivervi dentro</h2>
+                        <p>Vuoi continuare con questa operazione?</p>
+
+                        <button id="confirmResolvedPopup">CONTINUA</button>
+                        <button id="closeResolvedPopup">TORNA INDIETRO</button>
+                    </div>
+                </div>
+            {{/if}}
+        {{/unless}}
+    </header>
+
+    <hr class="study-chat__divider">
+
+    <div class="study-chat__messages"
+         role="region"
+         aria-label="Messaggi della discussione"
+         tabindex="0">
+        {{#each messages}}
+            {{#if isOwner}}
+                {{#if message_replied }}
+                    <label class="reply-label" data-reply-author-id="{{reply_to_author_id}}">Rispondendo a {{message_replied}}</label>
+                {{/if}}
+                <article class="study-chat__message_owner">
+                    <p class="study-chat__text"><strong>{{author_name}}</strong> - {{content}}</p>
+                </article>
+            {{else}}
+                {{#if message_replied }}
+                    <label class="reply-label" data-reply-author-id="{{reply_to_author_id}}">Rispondendo a {{message_replied}}</label>
+                {{/if}}
+                <div class="study-chat__message-row">
+                    <article class="study-chat__message">
+                        <p class="study-chat__text"><strong>{{author_name}}</strong> - {{content}}</p>
+                    </article>
+                    <button class="study-chat__reply" type="button" data-author-name="{{author_name}}" aria-label="Rispondi" title="Rispondi">
+                        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M3 19v-2a8 8 0 0 1 8-8h10" />
+                            <path d="m16 4 5 5-5 5" />
+                        </svg>
+                    </button>
+                </div>
+            {{/if}}
+        {{else}}
+            <p class="study-chat__empty">
+                Nessun messaggio. Inizia la conversazione!
+            </p>
+        {{/each}}
+    </div>
+    {{#if request.is_status_resolved }}
+        <label class="study-chat_chat_closed">✓ RICHIESTA DI AIUTO RISOLTA</label>
+    {{else}}
+        <form class="study-chat__composer" method="post" action="/help-center/chat/addMessage/{{request.id}}" id="chat-form">
+            <label class="study-chat__sr-only" for="chat-message">
+                Messaggio
+            </label>
+            <input
+                type="hidden"
+                id="replyToAuthor"
+                name="replyToAuthor"
+                value=""
+            >
+            <div class="study-chat__input-row">
+                <textarea
+                    id="chat-message"
+                    name="text"
+                    rows="1"
+                    maxlength="4000"
+                    placeholder="Scrivi un messaggio…"
+                    required
+                    autofocus
+                ></textarea>
+
+                <button
+                    class="study-chat__send"
+                    type="submit"
+                    aria-label="Invia messaggio"
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="22"
+                        height="22"
+                        aria-hidden="true"
+                    >
+                        <path fill="currentColor" d="M3 3 22 12 3 21l4-9z" />
+                    </svg>
+                </button>
+            </div>
+        </form>
+    {{/if}}
+    <script>
+        window.currentUserId="{{currentUserId}}";
+        window.isChatResolved={{request.is_status_resolved}};
+    </script>
+</section>

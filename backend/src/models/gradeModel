@@ -1,0 +1,47 @@
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+
+const Grade = sequelize.define('Grade', {
+    id: {
+        type: DataTypes.BIGINT.UNSIGNED,
+        autoIncrement: true,
+        primaryKey: true
+    },
+
+    subject_id: {
+        type: DataTypes.BIGINT.UNSIGNED,
+        allowNull: false,
+        references: {
+            model: 'subjects',
+            key: 'id'
+        }
+    },
+
+    grade: {
+        type: DataTypes.DECIMAL(4, 2),
+        allowNull: false,
+        validate: {
+            min: 1,
+            max: 6
+        }
+    },
+
+    description: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+        defaultValue: null
+    },
+
+    grade_date: {
+        type: DataTypes.DATEONLY,
+        allowNull: false
+    }
+}, {
+    tableName: 'grades',
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'uptaded_at',
+    underscored: true
+});
+
+module.exports = Grade;

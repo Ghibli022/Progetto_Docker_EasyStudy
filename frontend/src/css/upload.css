@@ -1,0 +1,131 @@
+.form-upload {
+    width: 100%;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 30px;
+    background: rgb(236, 236, 236);
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 2px 4px, rgba(0, 0, 0, 0.7) 0px 7px 13px -3px, rgba(0, 0, 0, 0.5) 0px -3px 0px inset;
+    margin-inline: auto;
+    align-content: center;
+    margin-block: 5rem;
+}
+ 
+.form-upload h2 {
+    margin: 0;
+}
+ 
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+ 
+.field label {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+ 
+.field textarea,
+.field select {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    font: inherit;
+    color: inherit;
+    background: #dbe1f7;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+ 
+.field textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+ 
+.field textarea:focus-visible,
+.field select:focus-visible {
+    outline-offset: 1px;
+}
+
+.field select option:checked {
+    background: linear-gradient(0deg, rgb(25, 100, 187), rgb(17, 53, 100));
+    color: #fff;
+}
+
+.custum-file-upload {
+    width: 100%;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border: dotted 3px #757a94;
+    background-color: #404c86;
+    border-radius: 12px;
+    transition: background 0.2s;
+}
+ 
+.custum-file-upload:hover,
+.custum-file-upload:focus-within {
+    background: #8994c5;
+}
+ 
+.custum-file-upload .icon {
+    font-size: 2.5rem;
+    color: white;
+}
+ 
+.custum-file-upload .text span {
+    font-weight: bold;
+    color: white;
+}
+ 
+.custum-file-upload input {
+    display: none;
+}
+ 
+.file-status {
+    margin: 0;
+    font-size: 0.9rem;
+}
+ 
+.file-status span {
+    font-weight: 600;
+    word-break: break-all;
+}
+
+.load-material{
+    margin-inline: auto;
+}
+
+#go-back{
+    text-align: left;
+}
+
+#go-back:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media (min-width: 600px) {
+    .load-material {
+        width: auto;
+        align-self: flex-end;
+    }
+}
+
+.error {
+    color: #d00000;
+    background-color: #ffe5e5;
+    border: 1px solid #d00000;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    text-align: center;
+}

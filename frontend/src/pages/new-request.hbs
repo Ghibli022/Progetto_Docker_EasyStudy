@@ -1,0 +1,16 @@
+<div class="form-upload">
+    <p id="go-back" onclick="window.location.href='/help-center'"><i class="fa-solid fa-arrow-left-long"></i>Torna indietro</p>
+    <h2>Nuova domanda</h2>
+    <form action="/help-center/add-request" id="form-upload" method="POST">
+        <div class="field">
+            <input type="text" name="title" required placeholder="Inserisci la domanda">
+            <label for="description">Descrizione</label>
+            <textarea name="description" id="description" rows="5"
+                placeholder="Inizia la conversazione" required></textarea>
+        </div>
+        <button type="submit" class="load-material"><i class="fa-solid fa-circle-plus"></i> Fai domanda</button>
+    </form>
+    {{#if error}}
+        <p class="error">{{error}}</p>
+    {{/if}}
+</div>

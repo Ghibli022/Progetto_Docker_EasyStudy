@@ -1,0 +1,19 @@
+const express = require('express');
+const router = express.Router();
+const path = require('path');
+const fs = require('fs');
+const gradeController = require('../controllers/gradeController');
+
+router.get('/table-grades', gradeController.showHomePage);
+
+router.post('/table-grades/new-subject', gradeController.newSubject);
+router.get('/table-grades/new-subject', (req,res) =>{
+    res.render('new-subject', {layout: "main", styles: ["navbar.css","searchbar.css","materials.css","home.css","grades.css"], scripts: []});
+});
+
+//router.post('/table-grades/new-grade', gradeController.newGrade);
+router.get('/table-grades/new-grade', (req,res) =>{
+    res.render('new-grade', {layout: "main", styles: ["navbar.css","searchbar.css","materials.css","home.css","grades.css"], scripts: []});
+});
+
+module.exports = router;

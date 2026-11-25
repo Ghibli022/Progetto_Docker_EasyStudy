@@ -1,0 +1,68 @@
+<h1 id="welcome-phrase">Ciao <span id="user-middle-email">utente1</span>!</h1>
+<span id="phrase-of-the-day"></span>
+<div class="actions">
+    <div class="resources" onclick="window.location.href='/materials'">
+        <i class="fa-solid fa-folder-open" id="action-icon"></i>
+        <p class="action-title">Materiali condivisi</p>
+        <p class="action-count">7 nuovi</p>
+    </div>
+    <div class="notifications" onclick="window.location.href='/notifications'">
+        <i class="fa-solid fa-bell action-icon" id="action-icon"></i>
+        <p class="action-title">Notifiche in arrivo</p>
+        <p class="action-count">2 non visualizzate</p>
+    </div>
+    <div class="requests-help-center" onclick="window.location.href='/help-center'">
+        <i class="fa-solid fa-circle-info action-icon" id="action-icon"></i>
+        <p class="action-title">Richieste Help Center</p>
+        <p class="action-count">1 nuovo</p>
+    </div>
+</div>
+
+<div class="other-actions">
+    <div class="next-events">
+        <div class="section-header">
+            <h2>I tuoi prossimi eventi</h2>
+            <i class="fa-solid fa-calendar-days"></i>
+        </div>
+        <div class="events-list">
+            <div class="event-item">
+                <div class="event-color blue"></div>
+
+                <div class="event-info">
+                    <h3>Verifica di matematica</h3>
+                    <p>
+                        <i class="fa-regular fa-calendar"></i>
+                        24 Settembre 2026
+                    </p>
+                    <p>
+                        <i class="fa-regular fa-clock"></i>
+                        08:00 - 09:00
+                    </p>
+                </div>
+            </div>
+        </div>
+        <button class="view-all-btn" onclick="window.location.href='/calendar'">Visualizza calendario</button>
+    </div>
+
+    <div class="average-grades">
+        <div class="section-header">
+            <h2>Media delle tue note</h2>
+            <i class="fa-solid fa-chart-simple"></i>
+        </div>
+        <div class="average-total">
+            <span class="average-number">5.0</span>
+            <span class="average-label">Media generale</span>
+        </div>
+        <div class="grades-list">
+            <div class="grade-item">
+                <div class="subject-color red"></div>
+                <div class="subject-info">
+                    <span>Matematica</span>
+                    <small>Media materia</small>
+                </div>
+                <strong>5.0</strong>
+            </div>
+        </div>
+        <button class="view-all-btn" onclick="window.location.href='/table-grades'">Visualizza tutte le note</button>
+    </div>
+</div>

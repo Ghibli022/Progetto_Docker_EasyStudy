@@ -1,0 +1,38 @@
+<style>
+    .notification-page {
+        position: relative;
+        min-height: 75vh;
+    }
+
+    .dev-placeholder-container {
+        position: absolute;
+        inset: 0;
+        background-color: rgba(248, 250, 252, 0.85);
+        backdrop-filter: blur(5px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+        border-radius: 12px;
+    }
+
+    .dev-placeholder-text {
+        font-size: clamp(2rem, 5vw, 4rem);
+        font-weight: 800;
+        color: #0f172a;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        padding: 30px 50px;
+        border: 5px dashed #2563eb;
+        border-radius: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+</style>
+
+<div class="notification-page">
+    <div class="dev-placeholder-container">
+        <div class="dev-placeholder-text">In via di sviluppo</div>
+    </div>
+</div>

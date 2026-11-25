@@ -1,0 +1,116 @@
+<div class="form-upload">
+    <p id="go-back" onclick="window.location.href='/materials'"><i class="fa-solid fa-arrow-left-long"></i>Torna
+        indietro</p>
+    <h2>Carica un materiale</h2>
+    <form action="/materials/upload/resource" id="form-upload" method="POST" enctype="multipart/form-data">
+        <div class="field">
+            <label for="file" class="custum-file-upload">
+                <i class="fa-solid fa-file-signature icon"></i>
+                <div class="text">
+                    <span>Clicca per inserire un documento</span>
+                </div>
+                <input id="file" type="file" name="material_file"
+                    accept="application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document, image/png, image/jpeg"
+                    required>
+            </label>
+            <p class="file-status">File inserito: <span id="file-uploaded">Nessuno</span></p>
+        </div>
+
+        <div class="field">
+            <input type="text" name="title" required placeholder="Titolo">
+            <label for="description">Descrizione</label>
+            <textarea name="description" id="description" rows="5"
+                placeholder="Descrivi brevemente il contenuto del materiale inserito.."></textarea>
+        </div>
+
+        <div class="field">
+            <label for="select-tags">Seleziona i tag da associare</label>
+            <select name="select-tags" id="select-tags" multiple size="8">
+                <optgroup label="Materie scientifiche">
+                    <option value="1">Matematica</option>
+                    <option value="2">Algebra</option>
+                    <option value="3">Geometria</option>
+                    <option value="4">Analisi</option>
+                    <option value="5">Statistica</option>
+                    <option value="6">Fisica</option>
+                    <option value="7">Chimica</option>
+                    <option value="8">Biologia</option>
+                    <option value="9">Scienze naturali</option>
+                    <option value="10">Astronomia</option>
+                    <option value="11">Geologia</option>
+                </optgroup>
+                <optgroup label="Informatica">
+                    <option value="12">Informatica</option>
+                    <option value="13">Programmazione</option>
+                    <option value="14">HTML</option>
+                    <option value="15">CSS</option>
+                    <option value="16">JavaScript</option>
+                    <option value="17">Python</option>
+                    <option value="18">Java</option>
+                    <option value="19">SQL</option>
+                    <option value="20">Database</option>
+                    <option value="21">Algoritmi</option>
+                    <option value="22">Reti</option>
+                    <option value="23">Sistemi operativi</option>
+                    <option value="24">Sicurezza informatica</option>
+                    <option value="25">Intelligenza artificiale</option>
+                </optgroup>
+                <optgroup label="Lingue">
+                    <option value="26">Italiano</option>
+                    <option value="27">Inglese</option>
+                    <option value="28">Francese</option>
+                    <option value="29">Tedesco</option>
+                    <option value="30">Spagnolo</option>
+                    <option value="31">Grammatica</option>
+                    <option value="32">Vocabolario</option>
+                    <option value="33">Letteratura</option>
+                    <option value="34">Comprensione del testo</option>
+                </optgroup>
+                <optgroup label="Materie umanistiche">
+                    <option value="35">Storia</option>
+                    <option value="36">Geografia</option>
+                    <option value="37">Filosofia</option>
+                    <option value="38">Educazione civica</option>
+                    <option value="39">Diritto</option>
+                    <option value="40">Economia</option>
+                    <option value="41">Psicologia</option>
+                    <option value="42">Sociologia</option>
+                    <option value="43">Religione</option>
+                </optgroup>
+                <optgroup label="Arte e sport">
+                    <option value="44">Arte</option>
+                    <option value="45">Storia dell'arte</option>
+                    <option value="46">Disegno tecnico</option>
+                    <option value="47">Musica</option>
+                    <option value="48">Educazione fisica</option>
+                </optgroup>
+                <optgroup label="Tipo di materiale">
+                    <option value="49">Appunti</option>
+                    <option value="50">Riassunto</option>
+                    <option value="51">Schema</option>
+                    <option value="52">Mappa concettuale</option>
+                    <option value="53">Formulario</option>
+                    <option value="54">Esercizi</option>
+                    <option value="55">Soluzioni</option>
+                    <option value="56">Verifica</option>
+                    <option value="57">Esame</option>
+                    <option value="58">Slide</option>
+                    <option value="59">Dispensa</option>
+                    <option value="60">Libro di testo</option>
+                    <option value="61">Flashcard</option>
+                    <option value="62">Progetto</option>
+                    <option value="63">Relazione</option>
+                    <option value="64">Laboratorio</option>
+                </optgroup>
+                <optgroup label="Scuola">
+                    <option value="65">Elementare</option>
+                    <option value="66">Media</option>
+                    <option value="67">Superiore</option>
+                    <option value="68">Universita</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <button type="submit" class="load-material"><i class="fa-solid fa-circle-plus"></i> Carica materiale</button>
+    </form>
+</div>

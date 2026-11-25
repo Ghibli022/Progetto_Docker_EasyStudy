@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EasyStudy: web app">
+    <meta name="keywords" content="Study, School, Grades, Education">
+    <meta name="author" content="Amel Cehic & Jan Vidal">
+    <title>{{title}}</title>
+    <link rel="icon" type="image/png" href="../public/icon-site.png">
+    {{#each styles}}
+        <link rel="stylesheet" href="../css/{{this}}">
+    {{/each}}
+    {{#each scripts}}
+        <script src="/js/{{this}}" defer></script>
+    {{/each}}
+</head>
+
+<body>
+    {{> navbar}}
+
+    <div class="container-page">
+        {{{body}}}
+        {{> footer}}
+    </div>
+
+    <script src="/js/font-icon.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</body>
+</html>

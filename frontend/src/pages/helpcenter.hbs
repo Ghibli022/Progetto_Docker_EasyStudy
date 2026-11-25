@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="search-container">
+        <input class="input" type="text" id="search-input">
+        <svg viewBox="0 0 24 24" class="search__icon">
+            <g>
+                <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                </path>
+            </g>
+        </svg>
+    </div>
+</div>
+<button class="load-material" onclick="window.location.href='/help-center/new-request'"><i class="fa-solid fa-circle-plus"></i> Fai domanda</button>
+
+<div class="events-list" id="requests-list" hidden></div>
+
+<div class="other-actions" id="other-actions-toHideInsearch">
+    <div class="next-events">
+        <div class="section-header">
+            <h2>Domande del giorno</h2>
+            <i class="fa-solid fa-calendar-day"></i>
+        </div>
+        {{#if requests_today.length}}
+        <div class="events-list">
+            {{#each requests_today}}
+            <a class="event-item"  onclick="location.href='/help-center/{{id}}'">
+                <div class="event-color blue"></div>
+                <div class="event-info">
+                    <h3>{{title}}</h3>
+                    <p><i class="fa-solid fa-clock"></i> <em>Pubblicato:</em> {{created_at_hours_ago}}</p>
+                    <p><i class="fa-solid fa-square-check"></i> <em>Stato:</em> <span style="background-color: {{statusColor}};color: white;font-weight: bolder;">{{status}}</span></p>
+                    <p><i class="fa-solid fa-circle-user"></i> <em>Creato da:</em> {{user_email}}</p>
+                </div>
+            </a>
+            {{/each}}
+        </div>
+        {{else}}
+        <div style="justify-content: center;color: gray">
+            <i class="fa-solid fa-book icon-no-results" style="font-size: 30px;"></i>
+            <p>Nessun risultato</p>
+        </div>
+        {{/if}}
+    </div>
+
+    <div class="next-events">
+        <div class="section-header">
+            <h2>Le tue domande</h2>
+            <i class="fa-solid fa-circle-question"></i>
+        </div>
+        {{#if requests_user.length}}
+        <div class="events-list">
+            {{#each requests_user}}
+            <a class="event-item" onclick="location.href='/help-center/{{id}}'" style="cursor: pointer;">
+                <div class="event-color blue"></div>
+                <div class="event-info">
+                    <h3>{{title}}</h3>
+                    <p><i class="fa-solid fa-clock"></i> <em>Pubblicato:</em> {{created_at}}</p>
+                    <p><i class="fa-solid fa-square-check"></i> <em>Stato:</em> <span style="background-color: {{statusColor}};color: white;font-weight: bolder;">{{status}}</span></p>
+                </div>
+            </a>
+            {{/each}}
+        </div>
+        {{else}}
+        <div style="justify-content: center;color: gray">
+            <i class="fa-solid fa-book icon-no-results" style="font-size: 30px;"></i>
+            <p>Nessun risultato</p>
+            <p>Crea la tua prima richiesta!</p>
+        </div>
+        {{/if}}
+    </div>
+</div>

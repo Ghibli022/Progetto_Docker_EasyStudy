@@ -1,0 +1,11 @@
+const express = require('express');
+const router = express.Router();
+const path = require('path');
+const fs = require('fs');
+
+router.get('/notifications', async (req,res) =>{
+    res.render('notifications', {layout: "main", title: "Notifications", styles: ["home.css","navbar.css","searchbar.css"]});
+});
+
+
+module.exports = router;

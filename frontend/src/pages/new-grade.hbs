@@ -1,0 +1,15 @@
+<div class="form-upload">
+    <p id="go-back">
+        <i class="fa-solid fa-arrow-left-long"></i>Torna indietro
+    </p>
+    <h2>Nuova valutazione</h2>
+    <form id="form-upload" method="POST" action="/table-grades/new-grade/{{subjectId}}">
+        <div class="field">
+            <label for="grade-value">Voto</label>
+            <input type="number" name="grade" id="grade-value" step="0.1" min="1" max="6" required placeholder="Inserisci il voto">
+        </div>
+        <button type="submit" class="load-material">
+            <i class="fa-solid fa-circle-plus"></i> Aggiungi valutazione
+        </button>
+    </form>
+</div>
